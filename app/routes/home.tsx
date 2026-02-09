@@ -1,5 +1,5 @@
 import type { Route } from "../+types/home";
-import ConstituencyPage from "../pages/constituency/constituency";
+import ConstituencyPage from "./constituency";
 
 export function meta({ }: Route.MetaArgs) {
   return [
