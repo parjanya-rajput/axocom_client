@@ -1,57 +1,48 @@
-// will be decoupled into a separate module for fetching candidates with hooks and query
-// trial run if the data fetching is working
+import { candidatesLoader, useCandidates } from "~/features/candidates/hooks";
 
-import { gql, type TypedDocumentNode } from "@apollo/client";
-import { useReadQuery } from "@apollo/client/react";
-import { useLoaderData } from "react-router";
-import type { Route } from "./+types/candidates";
-import { apolloLoader } from "~/lib/api";
-
-interface Candidate {
-    id: number;
-    name: string;
-    age: number;
-    party: string;
-    assembly_constituency: string;
-    assets: string;
-    liabilities: string;
-    criminal_cases: number;
-}
-
-interface CandidatesData {
-    candidates: Candidate[];
-}
-
-const GET_CANDIDATES: TypedDocumentNode<CandidatesData> = gql`
-  query GetCandidates {
-    candidates {
-      id
-      name
-      age
-      party
-      assembly_constituency
-      assets
-      liabilities
-      criminal_cases
-    }
-  }
-`;
-
-export const loader = apolloLoader<Route.LoaderArgs>()(({ preloadQuery }) => {
-    const candidatesRef = preloadQuery(GET_CANDIDATES);
-    return { candidatesRef };
-});
+export const loader = candidatesLoader;
 
 export default function CandidatesPage() {
-    const { candidatesRef } = useLoaderData<typeof loader>();
-    const { data } = useReadQuery(candidatesRef);
+    const { data, error } = useCandidates();
+
+    if (error) return <div>Something went wrong.</div>;
 
     return (
         <div>
             <h1>Candidates</h1>
             <ul>
                 {data.candidates.map((c) => (
-                    <li key={c.id}>{c.name} - {c.party}</li>
+                    <li key={c.id}>
+                        {c.name} – {c.party}
+                        <br />
+                        {c.so_do_wo}
+                        <br />
+                        {c.candidate_image}
+                        <br />
+                        {c.age}
+                        <br />
+                        {c.party}
+                        <br />
+                        {c.assembly_constituency}
+                        <br />
+                        {c.name_enrolled_as_voter_in}
+                        <br />
+                        {c.self_profession}
+                        <br />
+                        {c.spouse_profession}
+                        <br />
+                        {c.criminal_cases}
+                        <br />
+                        {c.assets}
+                        <br />
+                        {c.liabilities}
+                        <br />
+                        {c.education_category}
+                        <br />
+                        {c.university_name}
+                        <br />
+                        {c.created_at}
+                    </li>
                 ))}
             </ul>
         </div>
