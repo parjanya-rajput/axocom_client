@@ -154,11 +154,11 @@ export default function ConstituencyPage() {
                     <Table>
                         <TableHeader className="bg-gray-50/50">
                             <TableRow>
-                                <TableHead className="text-[10px] font-bold uppercase py-4">Candidate Name</TableHead>
-                                <TableHead className="text-[10px] font-bold uppercase py-4">Party</TableHead>
-                                <TableHead className="text-[10px] font-bold uppercase py-4">Education</TableHead>
-                                <TableHead className="text-[10px] font-bold uppercase py-4">Criminal Cases</TableHead>
-                                <TableHead className="text-[10px] font-bold uppercase py-4">Projected Share</TableHead>
+                                <TableHead className="text-sm">Candidate Name</TableHead>
+                                <TableHead className="text-sm">Party</TableHead>
+                                <TableHead className="text-sm">Education</TableHead>
+                                <TableHead className="text-sm">Criminal Cases</TableHead>
+                                <TableHead className="text-sm">Projected Share</TableHead>
                                 <TableHead className="text-right py-4"></TableHead>
                             </TableRow>
                         </TableHeader>
