@@ -1,19 +1,7 @@
 import { useMemo } from "react";
 import { useLazyQuery } from "@apollo/client/react";
 import { GET_CONSTITUENCY_CANDIDATES } from "../services";
-
-// Shape consumed by CandidateRow component
-export interface CandidateRowData {
-    id: number;
-    name: string;
-    party: string;
-    partyShortName: string;
-    education: string;
-    criminalCasesLabel: string;
-    projectedShare: string;    // placeholder until backend supports it
-    partyColor: string;
-    imageUrl?: string;
-}
+import type { CandidateRowData } from "../types";
 
 // Simple party → color mapping (extend as needed)
 const PARTY_COLORS: Record<string, string> = {
@@ -35,7 +23,8 @@ function getPartyColor(partyName: string): string {
     return "blue"; // default
 }
 
-export function useConstituencyCandidates() {
+
+export function useConstituencyCandidates(totalVoters: number | undefined) {
     const [fetchCandidates, { data: candidatesData, loading }] = useLazyQuery(
         GET_CONSTITUENCY_CANDIDATES
     );
@@ -50,14 +39,15 @@ export function useConstituencyCandidates() {
             party: ec.party.short_name || ec.party.name,
             partyShortName: ec.party.short_name,
             education: ec.candidate.education_category ?? "N/A",
+            votes_polled: ec.votes_polled,
             criminalCasesLabel: ec.candidate.criminal_cases
                 ? `${ec.candidate.criminal_cases} case${ec.candidate.criminal_cases > 1 ? "s" : ""}`
                 : "None",
-            projectedShare: "—",  // TODO: implement when backend supports it
+            projectedShare: totalVoters ? `${(ec.votes_polled / totalVoters * 100).toFixed(2)}%` : "—",
             partyColor: getPartyColor(ec.party.short_name || ec.party.name),
             imageUrl: ec.candidate.candidate_image ?? undefined,
         }));
-    }, [candidatesData]);
+    }, [candidatesData, totalVoters]);
 
     const totalCandidates = candidates.length;
 

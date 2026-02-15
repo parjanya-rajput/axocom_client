@@ -80,7 +80,7 @@ export function useConstituencyIndicators(
                 sub: `${educated} of ${total} candidates have formal education`,
                 color: educationPct > 70 ? "bg-green-500" : educationPct > 40 ? "bg-blue-600" : "bg-yellow-500",
                 percent: educationPct,
-                valueColorClassName: "text-blue-600",
+                valueColorClassName: educationPct > 70 ? "text-green-600" : educationPct > 40 ? "text-blue-600" : "text-yellow-600",
             },
             {
                 label: "Avg. Candidate Assets",

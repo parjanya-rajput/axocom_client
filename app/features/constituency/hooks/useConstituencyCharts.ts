@@ -21,7 +21,7 @@ export function useConstituencyCharts(
         fetchTrend({ variables: { constituencyId } });
     };
 
-    // ── Trend Area Chart: total voters across years ─────────────
+    //  Trend Area Chart: total voters across years 
     const turnoutChart = useMemo(() => {
         const elections = trendData?.electionsByConstituencyId ?? [];
 
@@ -57,7 +57,7 @@ export function useConstituencyCharts(
         };
     }, [trendData]);
 
-    // ── Donut Pie Chart: gender split from detail data ──────────
+    //  Donut Pie Chart: gender split from detail data 
     const genderChart = useMemo(() => {
         const election = detailData?.electionByConstituencyAndYear;
 

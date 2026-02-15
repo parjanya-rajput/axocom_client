@@ -11,6 +11,7 @@ export type CandidateRowProps = {
     education: string;
     criminalCases: string;
     projectedShare: string;
+    votesPolled: number;
     /** Tailwind color keyword used in text/bg classes, e.g. "orange" | "blue" */
     partyColor: string;
     /** Optional profile image URL; falls back to a gray circle if not provided */
@@ -25,6 +26,7 @@ export const CandidateRow: React.FC<CandidateRowProps> = ({
     education,
     criminalCases,
     projectedShare,
+    votesPolled,
     partyColor,
     profileImageUrl,
     onViewProfile,
@@ -64,6 +66,10 @@ export const CandidateRow: React.FC<CandidateRowProps> = ({
 
             <TableCell className="font-black text-sm">
                 {projectedShare}
+            </TableCell>
+
+            <TableCell className="font-black text-sm text-middle">
+                {votesPolled}
             </TableCell>
 
             <TableCell className="text-right">

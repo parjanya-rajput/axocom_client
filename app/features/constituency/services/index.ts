@@ -98,6 +98,7 @@ export const GET_CONSTITUENCY_CANDIDATES: TypedDocumentNode<
   query GetConstituencyCandidates($constituencyId: Int!, $electionYear: Int!) {
     constituency_candidates(constituency_id: $constituencyId, election_year: $electionYear) {
       id
+      votes_polled
       candidate {
         id
         name

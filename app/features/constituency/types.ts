@@ -52,6 +52,7 @@ export interface ElectionsTrendData {
 // Candidate fields as resolved via ElectionCandidate → candidate field resolver
 export interface ElectionCandidateDetail {
     id: number;
+    votes_polled: number;
     candidate: {
         id: number;
         name: string;
@@ -60,6 +61,7 @@ export interface ElectionCandidateDetail {
         education_category: string | null;
         criminal_cases: number | null;
         assets: number | null;
+
     };
     party: {
         id: number;
@@ -95,4 +97,18 @@ export interface ElectionResultDetail {
 
 export interface ConstituencyResultsData {
     constituency_results: ElectionResultDetail[];
+}
+
+// Shape consumed by CandidateRow 
+export interface CandidateRowData {
+    id: number;
+    name: string;
+    party: string;
+    partyShortName: string;
+    education: string;
+    votes_polled: number;
+    criminalCasesLabel: string;
+    projectedShare: string;
+    partyColor: string;
+    imageUrl?: string;
 }
