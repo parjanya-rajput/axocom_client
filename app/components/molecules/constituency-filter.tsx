@@ -29,6 +29,9 @@ type ConstituencyFilterBarProps = {
 
     onUpdateView?: () => void;
     className?: string;
+
+    constituencyOptions?: { id: number; name: string; ac_number: number }[];
+    onConstituencySelect?: (constituency: { id: number; name: string }) => void;
 };
 
 export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
@@ -42,7 +45,10 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
     onConstituencyChange,
     onUpdateView,
     className = "",
+    constituencyOptions,
+    onConstituencySelect,
 }) => {
+    const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
     return (
         <div
             className={`bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-wrap lg:flex-nowrap items-end gap-4 ${className}`}
@@ -85,8 +91,8 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
                 </Select>
             </div>
 
-            {/* Constituency */}
-            <div className="space-y-1.5 flex-[2] min-w-[300px]">
+            {/* Constituency search with dropdown */}
+            <div className="space-y-1.5 flex-[2] min-w-[300px] relative">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                     Select Constituency
                 </label>
@@ -95,8 +101,28 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
                     <Input
                         value={constituency}
                         onChange={(e) => onConstituencyChange(e.target.value)}
+                        onFocus={() => setIsDropdownOpen(true)}
+                        onBlur={() => {
+                            // Delay so click on dropdown item registers before closing
+                            setTimeout(() => setIsDropdownOpen(false), 150);
+                        }}
                         className="pl-10 bg-white border-gray-200"
+                        placeholder="Type to search..."
                     />
+                    {/* Dropdown of matching constituencies */}
+                    {constituencyOptions && constituencyOptions.length > 0 && isDropdownOpen && (
+                        <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                            {constituencyOptions.map((c) => (
+                                <button
+                                    key={c.id}
+                                    onClick={() => onConstituencySelect?.(c)}
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 transition-colors"
+                                >
+                                    {c.name} <span className="text-gray-400">(AC #{c.ac_number})</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 

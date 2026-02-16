@@ -6,8 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-import { ApolloHydrationHelper } from "@apollo/client-integration-react-router";
-
+import { ApolloProvider } from "@apollo/client/react";
+import { apolloClient } from "~/lib/api";
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ApolloHydrationHelper>{children}</ApolloHydrationHelper>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -43,9 +43,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ApolloProvider client={apolloClient}>
+      <Outlet />
+    </ApolloProvider>
+  );
 }
-
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
