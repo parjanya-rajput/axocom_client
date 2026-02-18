@@ -1,35 +1,36 @@
 // Raw candidate as it comes from the API
 // if needed zod schema can be added here after discussion
-export interface Candidate {
-    id: number;
-    neta_id: number;
-    name: string;
-    so_do_wo: string;
-    age: number;
-    candidate_image: string | null;
-    assembly_constituency: string;
-    party: string;
-    name_enrolled_as_voter_in: string;
-    self_profession: string;
-    spouse_profession: string | null;
-    criminal_cases: number;
-    assets: string;
-    liabilities: string;
-    education_category: string;
-    university_name: string | null;
-    pan_itr: string | null;
-    details_of_criminal_cases: JSON;
-    details_of_movable_assets: JSON;
-    details_of_immovable_assets: JSON;
-    details_of_liabilities: JSON;
-    source_of_income: JSON;
-    contracts: JSON;
-    social_profiles: JSON
-    created_at: string;
-
+// add caste here
+export interface RawCandidate {
+    id: number
+    neta_id: number
+    name: string
+    so_do_wo?: string | null
+    age?: number | null
+    candidate_image?: string | null
+    assembly_constituency?: string | null
+    party?: string | null
+    name_enrolled_as_voter_in?: string | null
+    self_profession?: string | null
+    spouse_profession?: string | null
+    criminal_cases?: number | null
+    assets?: number | null
+    liabilities?: number | null
+    education_category?: string | null
+    university_name?: string | null
+    pan_itr?: Record<string, any> | null
+    social_profiles?: {
+        twitter?: string
+        facebook?: string
+        instagram?: string
+    } | null
 }
 
 export interface CandidatesData {
-    candidates: Candidate[];
+    candidates: RawCandidate[];
+}
+
+export interface CandidateData {
+    candidate: RawCandidate | null;
 }
 

@@ -25,7 +25,7 @@ export default function ConstituencyPage() {
     const [showAllCandidates, setShowAllCandidates] = useState(false);
 
     const filters = useElectionFilter();
-    const { navItems } = useNavigation();
+    const { navItems, onNavChange } = useNavigation();
     const { titleSection, stats } = useConstituencyOverview(filters.detailData);
     const { turnoutChart, genderChart, loadTrend } = useConstituencyCharts(
         filters.detailData,
@@ -75,6 +75,7 @@ export default function ConstituencyPage() {
                 activeNavId="constituencies"
                 open={sidebarOpen}
                 onOpenChange={setSidebarOpen}
+                onNavChange={onNavChange}
             />
 
             <main className={cn(

@@ -1,8 +1,13 @@
 import * as React from "react";
-import { Menu } from "lucide-react";
-import { AppLogoIcon } from "~/components/ui/app-logo-icon";
-import { AppTitleText } from "~/components/ui/app-title-text";
-import { NavItemButton } from "~/components/ui/nav-item-button";
+import {
+    Menu,
+    LayoutDashboard,
+    Map,
+    Users,
+    User,
+    Settings,
+    Calendar,
+} from "lucide-react";
 import { cn } from "~/lib/utils";
 
 export type SidebarNavItem = {
@@ -10,8 +15,8 @@ export type SidebarNavItem = {
     label: string;
 };
 
-const SIDEBAR_WIDTH_OPEN = "w-56";   // 14rem
-const SIDEBAR_WIDTH_CLOSED = "w-14"; // 3.5rem
+const SIDEBAR_WIDTH_OPEN = "w-56";  // match candidates.tsx width
+const SIDEBAR_WIDTH_CLOSED = "w-16";
 
 type SidebarProps = {
     navItems: SidebarNavItem[];
@@ -21,6 +26,28 @@ type SidebarProps = {
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     className?: string;
+};
+
+const iconForNavId = (id: string) => {
+    switch (id) {
+        case "dashboard":
+            return <LayoutDashboard size={20} />;
+        case "constituencies":
+        case "constituency":
+            return <Map size={20} />;
+        case "candidates":
+            return <Users size={20} />;
+        case "profile":
+            return <User size={20} />;
+        case "settings":
+            return <Settings size={20} />;
+        case "parties":
+            return <Users size={20} />;
+        case "elections":
+            return <Calendar size={20} />;
+        default:
+            return null;
+    }
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -58,61 +85,90 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 />
             )}
 
-            {/* Sidebar - fixed width, never overlaps; main content uses pl-14 / pl-56 to shift */}
+            {/* Sidebar */}
             <aside
                 className={cn(
-                    "fixed left-0 top-0 z-50 h-full bg-white border-r border-gray-200",
-                    "flex flex-col transition-[width] duration-200 ease-out overflow-hidden",
+                    "fixed inset-y-0 left-0 z-50 bg-white border-r border-slate-200 flex flex-col transition-[width] duration-200 ease-out overflow-hidden",
                     open ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED,
                     className
                 )}
             >
-                {/* Header: three-line icon in line with Axocom for consistent look */}
-                <div className="flex items-center gap-2 px-3 py-4 border-b border-gray-200 min-h-[3.5rem] shrink-0">
+                {/* Header: menu button + Axocom logo/title from candidates page */}
+                <div className="flex items-center gap-3 px-4 py-4 border-b border-slate-200">
                     <button
                         type="button"
                         onClick={toggle}
-                        className="shrink-0 flex items-center justify-center size-8 text-gray-600 hover:text-gray-900 transition-colors rounded"
+                        className="shrink-0 flex items-center justify-center size-8 text-slate-600 hover:text-slate-900 transition-colors rounded"
                         aria-label={open ? "Close sidebar" : "Open sidebar"}
                     >
                         <Menu className="size-4" />
                     </button>
+
                     {open && (
-                        <>
-                            <AppLogoIcon />
-                            <AppTitleText>Axocom Analytics</AppTitleText>
-                        </>
+                        <div className="flex items-center gap-3">
+                            <div className="size-7 text-blue-600">
+                                <svg
+                                    fill="none"
+                                    viewBox="0 0 48 48"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        clipRule="evenodd"
+                                        d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                        fill="currentColor"
+                                        fillRule="evenodd"
+                                    />
+                                </svg>
+                            </div>
+                            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+                                Axocom
+                            </h1>
+                        </div>
                     )}
                 </div>
 
-                {/* Nav - only when open */}
-                {open && (
-                    <nav className="flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto">
-                        {navItems.map((item) => (
-                            <NavItemButton
-                                key={item.id}
-                                label={item.label}
-                                isActive={item.id === activeNavId}
-                                onClick={() => onNavChange?.(item.id)}
-                                variant="vertical"
-                            />
-                        ))}
-                    </nav>
-                )}
+                {/* Nav */}
+                <nav className="flex-1 px-2 py-4 space-y-1">
+                    {navItems.map((item) => {
+                        const active = item.id === activeNavId;
+                        const icon = iconForNavId(item.id);
 
-                {/* Profile row - only when open */}
-                {open && (
-                    <div className="px-3 py-4 border-t border-gray-200 shrink-0">
-                        <span className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors cursor-default">
-                            Profile
-                        </span>
+                        return (
+                            <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => onNavChange?.(item.id)}
+                                className={cn(
+                                    "flex items-center gap-3 px-3 py-3 text-sm font-semibold rounded-lg transition-colors w-full",
+                                    active
+                                        ? "bg-blue-50 text-blue-600"
+                                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                                )}
+                            >
+                                {icon && <span className="shrink-0">{icon}</span>}
+                                {open && <span className="truncate">{item.label}</span>}
+                            </button>
+                        );
+                    })}
+                </nav>
+
+                {/* Profile row from candidates page */}
+                <div className="p-4 mt-auto border-t border-slate-100">
+                    <div className="flex items-center gap-3 px-2">
+                        {open && (
+                            <div className="flex flex-col">
+                                <span className="text-small text-slate-900">
+                                    Profile
+                                </span>
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </aside>
         </>
     );
 };
 
-/** Use with Sidebar for consistent main padding: pl-14 when closed, pl-56 when open. */
+/** Use with Sidebar for consistent main padding: pl-16 when closed, pl-64 when open. */
 export const getSidebarMainClass = (open: boolean) =>
-    open ? "pl-56" : "pl-14";
+    open ? "pl-56" : "pl-16";
