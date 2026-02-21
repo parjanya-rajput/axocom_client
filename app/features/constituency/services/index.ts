@@ -99,14 +99,14 @@ export const GET_CONSTITUENCY_CANDIDATES: TypedDocumentNode<
     constituency_candidates(constituency_id: $constituencyId, election_year: $electionYear) {
       id
       votes_polled
+      criminal_cases
+      assets
       candidate {
         id
         name
         candidate_image
         party
         education_category
-        criminal_cases
-        assets
       }
       party {
         id
@@ -127,7 +127,7 @@ export const GET_CONSTITUENCY_RESULTS: TypedDocumentNode<
       id
       election_candidate_id
       votes_polled
-      rank
+      position
       status
       election_candidate {
         id

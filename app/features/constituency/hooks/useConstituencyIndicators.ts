@@ -44,7 +44,7 @@ export function useConstituencyIndicators(
 
         // Criminal cases rate
         const withCases = rawCandidatesData.filter(
-            (ec) => ec.candidate.criminal_cases && ec.candidate.criminal_cases > 0
+            (ec) => ec.criminal_cases && ec.criminal_cases > 0
         ).length;
         const criminalPct = Math.round((withCases / total) * 100);
 
@@ -59,7 +59,7 @@ export function useConstituencyIndicators(
 
         // Average assets (in crores)
         const assetsSum = rawCandidatesData.reduce(
-            (sum, ec) => sum + (ec.candidate.assets ?? 0), 0
+            (sum, ec) => sum + ec.assets, 0
         );
         const avgAssets = assetsSum / total;
         // Normalize to 0-100 for the bar (cap at 50Cr = 100%)
@@ -95,8 +95,8 @@ export function useConstituencyIndicators(
 
     // ── Historical Control (from election results) ──────────────
     const results = resultsData?.constituency_results ?? [];
-    const winner = results.find((r) => r.rank === 1) ?? null;
-    const runnerUp = results.find((r) => r.rank === 2) ?? null;
+    const winner = results.find((r) => r.position === 1) ?? null;
+    const runnerUp = results.find((r) => r.position === 2) ?? null;
 
     const historicalControl = useMemo((): SmallPartyCardProps[] => {
         if (!winner) return [];

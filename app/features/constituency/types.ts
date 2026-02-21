@@ -53,14 +53,14 @@ export interface ElectionsTrendData {
 export interface ElectionCandidateDetail {
     id: number;
     votes_polled: number;
+    criminal_cases: number;
+    assets: number;
     candidate: {
         id: number;
         name: string;
         candidate_image: string | null;
         party: string;
         education_category: string | null;
-        criminal_cases: number | null;
-        assets: number | null;
 
     };
     party: {
@@ -78,7 +78,7 @@ export interface ElectionResultDetail {
     id: number;
     election_candidate_id: number;
     votes_polled: number;
-    rank: number;
+    position: number;
     status: string;
     election_candidate: {
         id: number;
