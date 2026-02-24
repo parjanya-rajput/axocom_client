@@ -19,8 +19,7 @@ import { cn } from '~/lib/utils';
 import { useEducationHistory } from '~/features/candidates/hooks/useEducationHistory';
 import { useCandidateTimeline } from '~/features/candidates/hooks/useCandidateTimeline';
 import { useNetworthCharts } from '~/features/candidates/hooks/useNetworthCharts';
-import { Card } from '~/components/ui/card';
-import { BarChartBar } from '~/components/ui/bar-chart-bar';
+import { NetWorthBarChart } from '~/components/molecules/candidate-profile/net-worth-bar-chart';
 // MAIN PAGE COMPONENT 
 export default function CandidateProfile() {
     const { navItems, onNavChange } = useNavigation();
@@ -83,14 +82,21 @@ export default function CandidateProfile() {
                             onYearChange={setSelectedYear}
                         />
                     )}
-
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+                        <FinancialSummary
+                            assets={financialSummaryData.assets}
+                            liabilities={financialSummaryData.liabilities}
+                            netWorth={financialSummaryData.netWorth}
+                        />
+                        <NetWorthBarChart bars={bars} maxNetWorth={maxNetWorth} />
+                    </div>
 
                     {/* Financial Summary */}
-                    <FinancialSummary
+                    {/* <FinancialSummary
                         assets={financialSummaryData.assets}
                         liabilities={financialSummaryData.liabilities}
                         netWorth={financialSummaryData.netWorth}
-                    />
+                    /> */}
 
                     {/* PAN & ITR */}
                     <DataTableCard
@@ -100,32 +106,7 @@ export default function CandidateProfile() {
                         rows={panItrRows}
                     />
 
-                    {bars.length > 0 && (
-                        <Card className="p-6">
-                            <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-8">
-                                Net Worth Growth Trajectory
-                            </h3>
-                            <div className="relative h-64 flex items-end justify-between px-10 gap-4">
-                                <div className="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none">
-                                    <div className="border-t border-slate-100 w-full" />
-                                    <div className="border-t border-slate-100 w-full" />
-                                    <div className="border-t border-slate-100 w-full" />
-                                    <div className="border-t border-slate-100 w-full" />
-                                </div>
-                                {bars.map((bar, i) => (
-                                    <BarChartBar
-                                        key={bar.year}
-                                        value={bar.netWorth}
-                                        label={String(bar.year)}
-                                        maxValue={maxNetWorth}
-                                        height={160}
-                                        barColor={i === bars.length - 1 ? "bg-blue-600" : "bg-blue-600/60"}
-                                        textColor={i === bars.length - 1 ? "text-blue-600" : "text-slate-500"}
-                                    />
-                                ))}
-                            </div>
-                        </Card>
-                    )}
+                    {/* <NetWorthBarChart bars={bars} maxNetWorth={maxNetWorth} /> */}
 
 
                     {/* Detailed Wealth Breakdown */}

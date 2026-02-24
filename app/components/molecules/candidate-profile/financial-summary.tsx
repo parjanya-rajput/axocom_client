@@ -8,7 +8,7 @@ export function FinancialSummary({
     netWorth,
 }: FinancialSummaryData) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FinCard
                 label="Total Assets"
                 value={assets.value}
@@ -25,7 +25,7 @@ export function FinancialSummary({
                 subColor={liabilities.subColor}
             />
 
-            <div className="bg-gradient-to-br from-white to-slate-50 p-5 rounded-xl border border-slate-200 shadow-sm">
+            <div className="bg-gradient-to-br from-white to-slate-50 p-5 rounded-xl border border-slate-200 shadow-sm sm:col-span-2">
                 <div className="flex justify-between mb-2">
                     <span className="text-xs font-bold text-slate-400 uppercase">
                         Net Worth
