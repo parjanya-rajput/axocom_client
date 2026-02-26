@@ -99,7 +99,6 @@ export const GET_CONSTITUENCY_CANDIDATES: TypedDocumentNode<
     constituency_candidates(constituency_id: $constituencyId, election_year: $electionYear) {
       id
       votes_polled
-      criminal_cases
       assets
       candidate {
         id

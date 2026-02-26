@@ -4,10 +4,10 @@ import { useNavigation } from '~/hooks/useNavigation';
 import { useParams } from 'react-router';
 import { YearSegmentControl } from '~/components/ui/candidate-profile/year-segment-control';
 import { useCandidatesProfile } from '~/features/candidates/hooks/useCandidatesProfile';
-import { CandidateProfileCard } from '~/components/molecules/candidate-profile/candidate-profile-card';
+import { CandidateProfileCard } from '~/components/molecules/candidates/candidate-profile-card';
 import { useCandidateProfile } from '~/features/candidates/hooks/useCandidateDetailCard';
-import { EducationHistoryCard } from '~/components/molecules/candidate-profile/education-history-card';
-import { FinancialSummary } from '~/components/molecules/candidate-profile/financial-summary';
+import { EducationHistoryCard } from '~/components/molecules/candidates/education-history-card';
+import { FinancialSummary } from '~/components/molecules/candidates/financial-summary';
 import { useFinancialSummary } from '~/features/candidates/hooks/useFinancialSummary';
 import { usePanItrTable } from '~/features/candidates/hooks/usePanItr';
 import { DataTableCard } from '~/components/molecules/data-table-card';
@@ -19,7 +19,7 @@ import { cn } from '~/lib/utils';
 import { useEducationHistory } from '~/features/candidates/hooks/useEducationHistory';
 import { useCandidateTimeline } from '~/features/candidates/hooks/useCandidateTimeline';
 import { useNetworthCharts } from '~/features/candidates/hooks/useNetworthCharts';
-import { NetWorthBarChart } from '~/components/molecules/candidate-profile/net-worth-bar-chart';
+import { NetWorthBarChart } from '~/components/molecules/candidates/net-worth-bar-chart';
 // MAIN PAGE COMPONENT 
 export default function CandidateProfile() {
     const { navItems, onNavChange } = useNavigation();

@@ -1,38 +1,6 @@
 // different query variations can be added here
 import { gql, type TypedDocumentNode } from "@apollo/client";
-import type { CandidateData, CandidateElectionsData, CandidatesData } from "../types";
-
-export const GET_CANDIDATES_FULL: TypedDocumentNode<CandidatesData> = gql`
-  query GetCandidates {
-    candidates {
-      id
-      name
-      caste
-      so_do_wo
-      candidate_image
-      age
-      party
-      assembly_constituency
-      name_enrolled_as_voter_in
-      self_profession
-      spouse_profession
-      criminal_cases
-      assets
-      liabilities
-      education_category
-      university_name
-      pan_itr
-      details_of_criminal_cases
-      details_of_movable_assets
-      details_of_immovable_assets
-      details_of_liabilities
-      source_of_income
-      contracts
-      social_profiles
-      created_at
-    }
-  }
-`;
+import type { CandidateData, CandidateElectionsData } from "../types";
 
 export const GET_CANDIDATE_BY_ID: TypedDocumentNode<
   CandidateData,
@@ -85,3 +53,20 @@ export const GET_CANDIDATE_ELECTIONS: TypedDocumentNode<
 `;
 
 // add variation of the query to get the candidates with the full data / half data
+export const GET_CANDIDATES_LIST: TypedDocumentNode<
+  { candidates: import("../types").RawCandidate[] },
+  Record<string, never>
+> = gql`
+  query GetCandidatesList {
+    candidates {
+      id
+      name
+      caste
+      age
+      candidate_image
+      assembly_constituency
+      party
+      education_category
+    }
+  }
+`;

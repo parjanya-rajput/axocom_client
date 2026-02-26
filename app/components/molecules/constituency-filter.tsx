@@ -55,7 +55,7 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
         >
             {/* State / Region */}
             <div className="space-y-1.5 flex-1 min-w-[200px]">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
                     State / Region
                 </label>
                 <Select value={selectedState} onValueChange={onStateChange}>
@@ -74,7 +74,7 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
 
             {/* Election Year (dropdown) */}
             <div className="space-y-1.5 w-40">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
                     Election Year
                 </label>
                 <Select value={electionYear} onValueChange={onElectionYearChange}>
@@ -93,7 +93,7 @@ export const ConstituencyFilterBar: React.FC<ConstituencyFilterBarProps> = ({
 
             {/* Constituency search with dropdown */}
             <div className="space-y-1.5 flex-[2] min-w-[300px] relative">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
                     Select Constituency
                 </label>
                 <div className="relative">

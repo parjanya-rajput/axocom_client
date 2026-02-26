@@ -110,7 +110,7 @@ export const DonutPieChart: React.FC<DonutPieChartProps> = ({
                             return (
                                 <div
                                     key={item.name}
-                                    className="flex items-center gap-2 text-[10px] font-bold text-gray-500"
+                                    className="flex items-center gap-2 text-xs font-bold text-gray-500"
                                 >
                                     <div
                                         className="size-2 rounded-full"

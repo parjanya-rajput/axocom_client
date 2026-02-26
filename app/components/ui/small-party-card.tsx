@@ -28,13 +28,13 @@ export const SmallPartyCard: React.FC<SmallPartyCardProps> = ({
             className={`p-4 rounded-lg text-center ${containerClassName}`}
         >
             <p
-                className={`text-[10px] font-bold uppercase opacity-60 ${labelColorClassName}`}
+                className={`text-xs font-bold uppercase opacity-60 ${labelColorClassName}`}
             >
                 {label}
             </p>
             <p className={`text-xl font-black ${valueColorClassName}`}>{value}</p>
             {subtitle && (
-                <p className="text-[10px] text-gray-500 font-medium">{subtitle}</p>
+                <p className="text-xs text-gray-500 font-medium">{subtitle}</p>
             )}
         </div>
     );

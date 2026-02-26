@@ -161,7 +161,6 @@ export default function ConstituencyPage() {
                                     <TableHead className="text-sm">Candidate Name</TableHead>
                                     <TableHead className="text-sm">Party</TableHead>
                                     <TableHead className="text-sm">Education</TableHead>
-                                    <TableHead className="text-sm">Criminal Cases</TableHead>
                                     <TableHead className="text-sm">Share</TableHead>
                                     <TableHead className="text-sm">Votes Polled</TableHead>
                                     <TableHead className="text-right py-4"></TableHead>
@@ -174,7 +173,6 @@ export default function ConstituencyPage() {
                                         name={c.name}
                                         party={c.party}
                                         education={c.education}
-                                        criminalCases={c.criminalCasesLabel}
                                         projectedShare={c.projectedShare}
                                         votesPolled={c.votes_polled}
                                         partyColor={c.partyColor}

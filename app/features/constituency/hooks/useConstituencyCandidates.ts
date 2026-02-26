@@ -40,9 +40,6 @@ export function useConstituencyCandidates(totalVoters: number | undefined) {
             partyShortName: ec.party.short_name,
             education: ec.candidate.education_category ?? "N/A",
             votes_polled: ec.votes_polled,
-            criminalCasesLabel: ec.candidate.criminal_cases
-                ? `${ec.candidate.criminal_cases} case${ec.candidate.criminal_cases > 1 ? "s" : ""}`
-                : "None",
             projectedShare: totalVoters ? `${(ec.votes_polled / totalVoters * 100).toFixed(2)}%` : "—",
             partyColor: getPartyColor(ec.party.short_name || ec.party.name),
             imageUrl: ec.candidate.candidate_image ?? undefined,

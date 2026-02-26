@@ -9,7 +9,6 @@ export type CandidateRowProps = {
     name: string;
     party: string;
     education: string;
-    criminalCases: string;
     projectedShare: string;
     votesPolled: number;
     /** Tailwind color keyword used in text/bg classes, e.g. "orange" | "blue" */
@@ -24,14 +23,13 @@ export const CandidateRow: React.FC<CandidateRowProps> = ({
     name,
     party,
     education,
-    criminalCases,
     projectedShare,
     votesPolled,
     partyColor,
     profileImageUrl,
     onViewProfile,
 }) => {
-    const partyBadgeClasses = `text-${partyColor}-600 bg-${partyColor}-50 border-${partyColor}-100 font-black text-[10px]`;
+    const partyBadgeClasses = `text-${partyColor}-600 bg-${partyColor}-50 border-${partyColor}-100 font-black text-xs`;
 
     return (
         <TableRow className="border-gray-50">
@@ -58,12 +56,6 @@ export const CandidateRow: React.FC<CandidateRowProps> = ({
                 {education}
             </TableCell>
 
-            <TableCell
-                className="text-xs font-bold text-gray-400"
-            >
-                {criminalCases}
-            </TableCell>
-
             <TableCell className="font-black text-sm">
                 {projectedShare}
             </TableCell>
@@ -76,7 +68,7 @@ export const CandidateRow: React.FC<CandidateRowProps> = ({
                 <button
                     type="button"
                     onClick={onViewProfile}
-                    className="text-blue-600 font-bold text-[10px] hover:underline"
+                    className="text-blue-600 font-bold text-xs hover:underline"
                 >
                     View Profile
                 </button>

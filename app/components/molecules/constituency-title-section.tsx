@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
-import { Share2, FileText } from "lucide-react";
+
 
 type ConstituencyTitleSectionProps = {
     /** Breadcrumb segments: [state, region, constituencyName]. Last item is highlighted. */
@@ -30,7 +29,7 @@ export const ConstituencyTitleSection: React.FC<ConstituencyTitleSectionProps> =
             className={`flex flex-col md:flex-row justify-between items-start md:items-end gap-4 ${className}`}
         >
             <div>
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
                     <span>{state}</span> <span className="text-gray-300">/</span>
                     <span>{region}</span> <span className="text-gray-300">/</span>
                     <span className="text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
@@ -42,7 +41,7 @@ export const ConstituencyTitleSection: React.FC<ConstituencyTitleSectionProps> =
                     {liveTracking && (
                         <Badge
                             variant="outline"
-                            className="text-[10px] font-bold uppercase border-green-200 text-green-600 bg-green-50 px-2 py-0.5"
+                            className="text-xs font-bold uppercase border-green-200 text-green-600 bg-green-50 px-2 py-0.5"
                         >
                             <span className="size-1.5 bg-green-500 rounded-full mr-1.5 animate-pulse" />{" "}
                             Live Tracking

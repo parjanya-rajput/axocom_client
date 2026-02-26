@@ -63,7 +63,7 @@ export const StatCard: React.FC<StatCardProps> = ({
                 </p>
                 <h4 className="text-2xl font-black">{value}</h4>
                 {sub && (
-                    <p className="text-[10px] text-gray-400 font-medium">{sub}</p>
+                    <p className="text-xs text-gray-400 font-medium">{sub}</p>
                 )}
             </div>
         </Card>

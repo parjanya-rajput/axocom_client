@@ -53,7 +53,6 @@ export interface ElectionsTrendData {
 export interface ElectionCandidateDetail {
     id: number;
     votes_polled: number;
-    criminal_cases: number;
     assets: number;
     candidate: {
         id: number;
@@ -107,7 +106,6 @@ export interface CandidateRowData {
     partyShortName: string;
     education: string;
     votes_polled: number;
-    criminalCasesLabel: string;
     projectedShare: string;
     partyColor: string;
     imageUrl?: string;

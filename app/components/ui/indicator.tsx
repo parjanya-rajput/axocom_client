@@ -48,7 +48,7 @@ export const Indicator: React.FC<IndicatorProps> = ({
             </div>
 
             {sub && (
-                <p className="text-[10px] font-bold text-gray-400 tracking-tight">
+                <p className="text-xs font-bold text-gray-400 tracking-tight">
                     {sub}
                 </p>
             )}

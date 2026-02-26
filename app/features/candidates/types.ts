@@ -92,3 +92,15 @@ export interface FinancialSummaryData {
         affidavitLabel?: string;
     };
 }
+
+export interface CandidateListVM {
+    dbId: number;
+    name: string;
+    avatar: string;
+    party: string;
+    constituency: string;
+    state: string;
+    age: number | string;
+    education: string;
+    caste: string;
+}

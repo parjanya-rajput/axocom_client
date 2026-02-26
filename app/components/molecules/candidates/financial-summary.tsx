@@ -39,7 +39,7 @@ export function FinancialSummary({
                     </span>
 
                     {netWorth.affidavitLabel && (
-                        <span className="text-[10px] font-bold text-slate-500">
+                        <span className="text-xs font-bold text-slate-500">
                             {netWorth.affidavitLabel}
                         </span>
                     )}

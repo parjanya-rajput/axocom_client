@@ -23,7 +23,7 @@ export const CandidateSummaryCard: React.FC<CandidateSummaryCardProps> = ({
     party,
     avatarUrl,
     badgeText,
-    badgeClassName = "bg-green-100 text-green-700 hover:bg-green-100 border-none font-bold text-[10px]",
+    badgeClassName = "bg-green-100 text-green-700 hover:bg-green-100 border-none font-bold text-xs",
     className,
 }) => {
     return (
@@ -40,7 +40,7 @@ export const CandidateSummaryCard: React.FC<CandidateSummaryCardProps> = ({
                 )}
 
                 <div>
-                    <p className="text-[10px] font-bold text-gray-400">{roleLabel}</p>
+                    <p className="text-xs font-bold text-gray-400">{roleLabel}</p>
                     <p className="font-bold text-sm">{name}</p>
                     <p className="text-xs text-gray-500">{party}</p>
                 </div>
