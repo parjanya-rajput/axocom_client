@@ -4,6 +4,17 @@
 
 A modern, full-stack React application built with React Router 7, TypeScript, and Apollo GraphQL Client for exploring and analyzing electoral data. Demonstrates advanced React patterns including server-side rendering, data fetching strategies, feature-based architecture, and enterprise-level component design.
 
+## UI Preview
+
+### Election Dashboard
+![Election Dashboard](UI-Images/election_dashboard.png)
+
+### Voter Dashboard
+![Voter Dashboard](UI-Images/voter-dashboard.png)
+
+### Constituency Dashboard
+![Constituency Dashboard](UI-Images/constituency-dashboard.png)
+
 ## System Architecture Overview
 
 The frontend implements a comprehensive layered architecture with clear separation between presentation, business logic, and data management:
